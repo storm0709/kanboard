@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="UI and API tests">
+
+    <test name="Regression testing">
+        <classes>
+
+<!--            ADD ALL TEST CLASSES-->
+
+            <class name="tests.ProjectTests"/>
+            <class name="tests.LoginTests"/>
+            <class name="tests.TaskTests"/>
+        </classes>
+
+    </test>
+</suite>
