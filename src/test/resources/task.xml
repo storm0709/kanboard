@@ -3,7 +3,7 @@
 
     <test name="Task testing">
         <classes>
-            <class name="tests.TaskTests"/>
+            <class name="UI.tests.TaskTests"/>
         </classes>
     </test>
 </suite>

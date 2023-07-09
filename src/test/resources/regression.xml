@@ -6,9 +6,9 @@
 
 <!--            ADD ALL TEST CLASSES-->
 
-            <class name="tests.ProjectTests"/>
-            <class name="tests.LoginTests"/>
-            <class name="tests.TaskTests"/>
+            <class name="UI.tests.ProjectTests"/>
+            <class name="UI.tests.LoginTests"/>
+            <class name="UI.tests.TaskTests"/>
         </classes>
 
     </test>

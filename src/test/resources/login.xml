@@ -3,7 +3,7 @@
 
     <test name="Login testing">
         <classes>
-            <class name="tests.LoginTests"/>
+            <class name="UI.tests.LoginTests"/>
         </classes>
 
     </test>
