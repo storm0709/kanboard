@@ -26,11 +26,6 @@ public class LoginPage {
         return new LoginPage();
     }
 
-//    @Step("Open the User Dashboard page")
-//    public LoginPage openUserDashboardPage(){
-//        Selenide.open("/");
-//        return new LoginPage();
-//    }
     @Step("User logs in the app with login {0} and password {1}")
     public HeaderSection loginByUser(String login, String password){
         getUserNameField().shouldBe(Condition.visible).sendKeys(login);

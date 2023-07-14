@@ -12,15 +12,15 @@ public class BaseTest {
     @BeforeMethod
     @Step("User opens a browser window with size 1280x800")
     public void setUp(){
-//        String browser = System.getProperty("browser");
-//        String headless = System.getProperty("headless");
-//        Configuration.browser = browser;
-        Configuration.browser = "chrome";
+        String browser = System.getProperty("browser");
+        String headless = System.getProperty("headless");
+        Configuration.browser = browser;
+//        Configuration.browser = "chrome";
         Configuration.browserSize = "1280x800";
         Configuration.baseUrl=BASE_URL;
-//        if(headless.equals("true")){
-//            Configuration.headless = true;
-//        }
+        if(headless.equals("true")){
+            Configuration.headless = true;
+        }
     }
 
     @AfterMethod
