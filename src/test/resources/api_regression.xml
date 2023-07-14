@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="API tests">
+
+    <test name="API Regression testing">
+        <classes>
+
+            <!--            ADD ALL TEST CLASSES-->
+
+            <class name="API.tests.users.CreateUserPositiveApiTests"/>
+            <class name="API.tests.users.CreateUserNegativeApiTests"/>
+            <class name="API.tests.users.RemoveUserPositiveApiTests"/>
+            <class name="API.tests.users.UserActionsApiTests"/>
+            <class name="API.tests.projects.CreateProjectNegativeApiTests"/>
+            <class name="API.tests.projects.CreateProjectPositiveApiTests"/>
+            <class name="API.tests.projects.ProjectActionsApiTests"/>
+            <class name="API.tests.projects.ProjectPermissionsTests"/>
+            <class name="API.tests.projects.RemoveProjectPositiveApiTests"/>
+            <class name="API.tests.tasks.CreateTaskNegativeApiTests"/>
+            <class name="API.tests.tasks.CreateTaskPositiveApiTests"/>
+            <class name="API.tests.tasks.RemoveTaskNegativeApiTests"/>
+            <class name="API.tests.tasks.RemoveTaskPositiveApiTests"/>
+            <class name="API.tests.tasks.TaskActionsApiTests"/>
+        </classes>
+
+    </test>
+</suite>

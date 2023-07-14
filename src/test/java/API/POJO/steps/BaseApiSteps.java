@@ -2,6 +2,7 @@ package API.POJO.steps;
 
 import API.POJO.BodyArgs;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import static utils.EnvProperties.API_URL;

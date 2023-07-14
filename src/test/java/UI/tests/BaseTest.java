@@ -6,6 +6,8 @@ import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import static utils.EnvProperties.BASE_URL;
+
 public class BaseTest {
     @BeforeMethod
     @Step("User opens a browser window with size 1280x800")
@@ -15,10 +17,10 @@ public class BaseTest {
 //        Configuration.browser = browser;
         Configuration.browser = "chrome";
         Configuration.browserSize = "1280x800";
+        Configuration.baseUrl=BASE_URL;
 //        if(headless.equals("true")){
 //            Configuration.headless = true;
 //        }
-        Selenide.open("http://localhost/login");
     }
 
     @AfterMethod

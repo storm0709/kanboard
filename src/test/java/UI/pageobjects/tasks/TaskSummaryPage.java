@@ -1,52 +1,63 @@
 package UI.pageobjects.tasks;
 
+import UI.pageobjects.LoginPage;
+import UI.pageobjects.header.HeaderSection;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import UI.pageobjects.projectmanagement.projectheader.ProjectHeaderSection;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class TaskSummaryPage {
-    private final SelenideElement removeItem = $x("//a[text()='Remove']");
-    private final SelenideElement closeThisTaskItem = $x("//a[text()='Close this task']");
-    private final SelenideElement taskStatusClosed = $x("//span[contains(text(), 'closed')]");
-    private final SelenideElement yesBtn = $("#modal-confirm-button");
-    private final SelenideElement cancelBtn = $x("//a[text()='cancel']");
+public class TaskSummaryPage extends HeaderSection {
+    public SelenideElement removeItem() {
+        return $x("//a[text()='Remove']");
+    }
+    public SelenideElement closeThisTaskItem() {
+        return $x("//a[text()='Close this task']");
+    }
+    public SelenideElement addCommentItem() {
+        return $x("//a[text()='Add a comment']");
+    }
+    public SelenideElement taskStatusClosed() {
+        return $x("//span[contains(text(), 'closed')]");
+    }
+    public SelenideElement yesBtn() {
+        return $("#modal-confirm-button");
+    }
+    public SelenideElement cancelBtn() {
+        return $x("//a[text()='cancel']");
+    }
+    public SelenideElement commentAuthor(String userName) {
+        return $x("//strong[@class='comment-username'][text()='"+userName+"']");
+    }
+    public SelenideElement commentText(String commentText) {
+        return $x("//p[text()='"+commentText+"']");
+    }
 
+    @Step("Open Task Summary page")
+    public LoginPage openTaskSummaryPage(Integer taskId){
+        Selenide.open("/task/"+taskId);
+        return new LoginPage();
+    }
     @Step("User clicks on Remove menu item, gets confirmation modal window and clicks on Yes button")
-    public ListPage clickRemoveItem(){
-        getRemoveItem().shouldBe(Condition.visible).click();
-        getYesBtn().shouldBe(Condition.visible).click();
-        new ProjectHeaderSection().navigateToListPage();
-        return new ListPage();
+    public BoardPage clickRemoveItem(){
+        removeItem().shouldBe(Condition.visible).click();
+        yesBtn().shouldBe(Condition.visible).click();
+        return new BoardPage();
     }
 
     @Step("User clicks on Close this task menu item, gets confirmation modal window and clicks on Yes button")
     public TaskSummaryPage clickCloseThisTask(){
-        getCloseThisTaskItem().shouldBe(Condition.visible).click();
-        getYesBtn().shouldBe(Condition.visible).click();
+        closeThisTaskItem().shouldBe(Condition.visible).click();
+        yesBtn().shouldBe(Condition.visible).click();
         return this;
     }
 
-    public SelenideElement getTaskStatusClosed() {
-        return taskStatusClosed;
-    }
-
-    public SelenideElement getCloseThisTaskItem() {
-        return closeThisTaskItem;
-    }
-
-    public SelenideElement getRemoveItem() {
-        return removeItem;
-    }
-
-    public SelenideElement getYesBtn() {
-        return yesBtn;
-    }
-
-    public SelenideElement getCancelBtn() {
-        return cancelBtn;
+    @Step("User clicks on Add a comment menu item")
+    public NewCommentPage clickAddCommentItem(){
+        addCommentItem().shouldBe(Condition.visible).click();
+        return new NewCommentPage();
     }
 }

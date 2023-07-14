@@ -8,5 +8,5 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class UserId {
-    private String user_id;
+    private Integer user_id;
 }

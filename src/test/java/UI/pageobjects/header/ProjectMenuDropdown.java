@@ -4,9 +4,10 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import UI.pageobjects.projectmanagement.NewProjectPage;
+import lombok.Getter;
 
 import static com.codeborne.selenide.Selenide.$;
-
+@Getter
 public class ProjectMenuDropdown extends HeaderSection{
     private final SelenideElement projectMenuDropdown = $(".dropdown-submenu-open");
     private final SelenideElement addNewProjectMenuItem = $(".dropdown-submenu-open>li:nth-of-type(1)");
@@ -16,17 +17,5 @@ public class ProjectMenuDropdown extends HeaderSection{
     public NewProjectPage clickAddNewProject(){
         getAddNewProjectMenuItem().shouldBe(Condition.visible).click();
         return new NewProjectPage();
-    }
-
-    public SelenideElement getProjectMenuDropdown() {
-        return projectMenuDropdown;
-    }
-
-    public SelenideElement getAddNewProjectMenuItem() {
-        return addNewProjectMenuItem;
-    }
-
-    public SelenideElement getAddNewPersonalProjMenuItem() {
-        return addNewPersonalProjMenuItem;
     }
 }

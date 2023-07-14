@@ -8,5 +8,5 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class ProjectId {
-    private String project_id;
+    private Integer project_id;
 }

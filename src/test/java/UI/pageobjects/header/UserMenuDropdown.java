@@ -4,10 +4,11 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import UI.pageobjects.LoginPage;
+import lombok.Getter;
 
 import static com.codeborne.selenide.Selenide.$;
-
-public class UserMenuDropdown {
+@Getter
+public class UserMenuDropdown extends HeaderSection{
     private final SelenideElement userMenuDropdown = $(".dropdown-submenu-open");
     private final SelenideElement userName = $(".dropdown-submenu-open>li:nth-of-type(1)");
     private final SelenideElement myDashboard = $(".dropdown-submenu-open>li:nth-of-type(2)");
@@ -26,50 +27,5 @@ public class UserMenuDropdown {
                 .shouldBe(Condition.visible).click();
         getLogout().shouldBe(Condition.visible).click();
         return new LoginPage();
-    }
-
-
-    public SelenideElement getUserMenuDropdown() {
-        return userMenuDropdown;
-    }
-
-    public SelenideElement getUserName() {
-        return userName;
-    }
-
-    public SelenideElement getMyDashboard() {
-        return myDashboard;
-    }
-
-    public SelenideElement getMyProfile() {
-        return myProfile;
-    }
-
-    public SelenideElement getProjectsManagement() {
-        return projectsManagement;
-    }
-
-    public SelenideElement getUsersManagement() {
-        return usersManagement;
-    }
-
-    public SelenideElement getGroupsManagement() {
-        return groupsManagement;
-    }
-
-    public SelenideElement getPlugins() {
-        return plugins;
-    }
-
-    public SelenideElement getSettings() {
-        return settings;
-    }
-
-    public SelenideElement getDocumentation() {
-        return documentation;
-    }
-
-    public SelenideElement getLogout() {
-        return logout;
     }
 }

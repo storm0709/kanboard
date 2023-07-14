@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class BodyResult<T> {
     private String jsonrpc;
     private int id;
+    private String error;
     private T result;
 }
