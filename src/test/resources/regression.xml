@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="UI tests">
+
+    <test name="Regression testing">
+        <classes>
+
+<!--            ADD ALL TEST CLASSES-->
+
+            <class name="UI.tests.task.TaskTests"/>
+            <class name="UI.tests.task.CreateNewTaskTests"/>
+            <class name="UI.tests.project.RemoveProjectTests"/>
+            <class name="UI.tests.project.CancelProjectActionsTests"/>
+            <class name="UI.tests.project.CreateNewProjectTests"/>
+            <class name="UI.tests.login.LoginTests"/>
+            <class name="UI.tests.login.LoginCreatedUserTests"/>
+        </classes>
+
+    </test>
+</suite>

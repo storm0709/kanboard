@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="UI Task tests">
+
+    <test name="Task testing">
+        <classes>
+            <class name="UI.tests.task.TaskTests"/>
+            <class name="UI.tests.task.CreateNewTaskTests"/>
+        </classes>
+    </test>
+</suite>
