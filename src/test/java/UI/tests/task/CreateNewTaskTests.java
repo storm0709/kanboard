@@ -55,7 +55,7 @@ public class CreateNewTaskTests extends BaseTest {
     @AfterMethod(alwaysRun = true)
     @Step("Cleanup test data")
     public void removeDataAfterTest(){
-        taskApiSteps.removeTask(Integer.valueOf(taskId));
+//        taskApiSteps.removeTask(Integer.valueOf(taskId));
         projectApiSteps.removeProject(projectId);
         userApiSteps.removeUser(userId);
     }
