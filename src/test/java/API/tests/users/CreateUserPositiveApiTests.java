@@ -17,7 +17,6 @@ public class CreateUserPositiveApiTests {
     public void createUserApiTest(){
         userId = userApiSteps.createUser(USERNAME+getRandomInt(), PASSWORD);
         Assert.assertNotEquals(userId, false, "User is not created");
-        System.out.println(userId);
     }
 
     @AfterMethod(alwaysRun = true)

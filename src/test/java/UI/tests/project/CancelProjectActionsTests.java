@@ -8,9 +8,11 @@ import UI.pageobjects.projectmanagement.ProjectSummaryPage;
 import UI.tests.BaseTest;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.DBReader;
 
 import static API.POJO.enums.UserRoles.ADMIN;
 import static com.codeborne.selenide.Condition.text;
@@ -24,7 +26,7 @@ public class CancelProjectActionsTests extends BaseTest {
     private String username;
     private Boolean isRoleUpdated;
     private String projectId;
-    private String projectName = "AutoTest";
+    private String projectName = "AutoTest"+getRandomInt();
     UserApiSteps userApiSteps = new UserApiSteps();
     ProjectApiSteps projectApiSteps = new ProjectApiSteps();
 
@@ -34,7 +36,7 @@ public class CancelProjectActionsTests extends BaseTest {
         userId = userApiSteps.createUser(USERNAME+getRandomInt(),PASSWORD);
         isRoleUpdated = userApiSteps.updateUserRoleRequiredParam(userId, ADMIN.getRole());
         username = userApiSteps.getUserInfo(userId).getResult().getUsername();
-        projectId = projectApiSteps.createProjectRequiredParam(projectName+getRandomInt());
+        projectId = projectApiSteps.createProjectRequiredParam(projectName);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class CancelProjectActionsTests extends BaseTest {
     public void cancelAddNewProjectTest() {
         SelenideElement newProjectTitle = new DashboardOverviewPage()
                 .openUserDashboardPage()
-                .loginByUser(username, PASSWORD)
+                .loginGeneric(HeaderSection.class, username, PASSWORD)
                 .addNewProjectHeader()
                 .cancelCreateNewProject(projectName)
                 .getTitle().shouldBe(visible);
@@ -54,12 +56,11 @@ public class CancelProjectActionsTests extends BaseTest {
     public void cancelRemoveProjectTest(){
         SelenideElement newProjectTitle = new ProjectSummaryPage()
                 .openProjectSummaryPage(Integer.valueOf(projectId))
-                .login(username, PASSWORD)
+                .loginGeneric(ProjectSummaryPage.class, username, PASSWORD)
                 .removeProjectCancel()
                 .getTitle().shouldBe(visible);
         newProjectTitle.shouldHave(text(projectName));
-
-        // +++ ADD checking in DB +++
+        Assert.assertNotNull(DBReader.getProjectIdFromDBByName(projectName), "Project is removed");
     }
 
     @AfterMethod(alwaysRun = true)

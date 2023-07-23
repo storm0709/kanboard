@@ -17,7 +17,6 @@ public class RemoveUserPositiveApiTests {
     @Step("Setup test data")
     public void prepareDataForTest() {
         userId = userApiSteps.createUser(USERNAME+getRandomInt(),PASSWORD);
-        System.out.println(userId);
     }
 
     @Test

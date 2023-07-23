@@ -31,7 +31,6 @@ public class CreateTaskPositiveApiTests {
     public void createTaskApiTest(){
         taskId = taskApiSteps.createTaskRequiredParams(TASK_TITLE+getRandomInt(), Integer.valueOf(projectId));
         Assert.assertNotEquals(taskId, false, "Task is not created");
-        System.out.println(taskId);
     }
 
 

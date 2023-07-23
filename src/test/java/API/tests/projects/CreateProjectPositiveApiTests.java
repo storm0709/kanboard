@@ -18,7 +18,6 @@ public class CreateProjectPositiveApiTests {
     public void createProjectApiTest(){
         projectId = projectApiSteps.createProjectRequiredParam(PROJECTNAME+getRandomInt());
         Assert.assertNotEquals(projectId, false, "Project is not created");
-        System.out.println(projectId);
     }
 
     @AfterMethod(alwaysRun = true)

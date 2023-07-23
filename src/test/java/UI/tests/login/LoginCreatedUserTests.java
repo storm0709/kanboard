@@ -3,6 +3,7 @@ package UI.tests.login;
 import API.POJO.steps.UserApiSteps;
 import UI.dataproviders.LoginDataProvider;
 import UI.pageobjects.LoginPage;
+import UI.pageobjects.header.HeaderSection;
 import UI.tests.BaseTest;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
@@ -34,7 +35,7 @@ public class LoginCreatedUserTests extends BaseTest {
     public void loginCreatedUserTest() {
         new LoginPage()
                 .openLoginPage()
-                .loginByUser(username, PASSWORD);
+                .loginGeneric(HeaderSection.class, username, PASSWORD);
         Assert.assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(),
                             URL, "The logIn was not successful");
     }
@@ -44,7 +45,7 @@ public class LoginCreatedUserTests extends BaseTest {
     public void loginCreatedUserNegativeTest() {
         new LoginPage()
                 .openLoginPage()
-                .loginByUser(username, "");
+                .loginGeneric(HeaderSection.class, username, "");
         Assert.assertNotEquals(WebDriverRunner.getWebDriver().getCurrentUrl(),
                                 URL, "The logIn was successful");
     }

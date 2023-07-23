@@ -9,6 +9,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.Getter;
+import lombok.SneakyThrows;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -26,32 +27,42 @@ public class LoginPage {
         return new LoginPage();
     }
 
-    @Step("User logs in the app with login {0} and password {1}")
-    public HeaderSection loginByUser(String login, String password){
-        getUserNameField().shouldBe(Condition.visible).sendKeys(login);
-        getPasswordField().shouldBe(Condition.visible).sendKeys(password);
-        getSignInBtn().shouldBe(Condition.visible).click();
-        return new HeaderSection();
-    }
+//    @Step("User logs in the app with login {0} and password {1}")
+//    public HeaderSection loginByUser(String login, String password){
+//        getUserNameField().shouldBe(Condition.visible).sendKeys(login);
+//        getPasswordField().shouldBe(Condition.visible).sendKeys(password);
+//        getSignInBtn().shouldBe(Condition.visible).click();
+//        return new HeaderSection();
+//    }
+//
+//    @Step("User logs in the app")
+//    public ProjectSummaryPage login(String login, String password){
+//        getUserNameField().shouldBe(Condition.visible).sendKeys(login);
+//        getPasswordField().shouldBe(Condition.visible).sendKeys(password);
+//        getSignInBtn().shouldBe(Condition.visible).click();
+//        return new ProjectSummaryPage();
+//    }
+    @SneakyThrows
     @Step("User logs in the app")
-    public ProjectSummaryPage login(String login, String password){
+    public <T> T loginGeneric (Class<T> returnType, String login, String password){
         getUserNameField().shouldBe(Condition.visible).sendKeys(login);
         getPasswordField().shouldBe(Condition.visible).sendKeys(password);
         getSignInBtn().shouldBe(Condition.visible).click();
-        return new ProjectSummaryPage();
+        return returnType.newInstance();
     }
-    @Step("User logs in the app")
-    public BoardPage loginTask(String login, String password){
-        getUserNameField().shouldBe(Condition.visible).sendKeys(login);
-        getPasswordField().shouldBe(Condition.visible).sendKeys(password);
-        getSignInBtn().shouldBe(Condition.visible).click();
-        return new BoardPage();
-    }
-    @Step("User logs in the app")
-    public TaskSummaryPage loginTaskSummary(String login, String password){
-        getUserNameField().shouldBe(Condition.visible).sendKeys(login);
-        getPasswordField().shouldBe(Condition.visible).sendKeys(password);
-        getSignInBtn().shouldBe(Condition.visible).click();
-        return new TaskSummaryPage();
-    }
+
+//    @Step("User logs in the app")
+//    public BoardPage loginTask(String login, String password){
+//        getUserNameField().shouldBe(Condition.visible).sendKeys(login);
+//        getPasswordField().shouldBe(Condition.visible).sendKeys(password);
+//        getSignInBtn().shouldBe(Condition.visible).click();
+//        return new BoardPage();
+//    }
+//    @Step("User logs in the app")
+//    public TaskSummaryPage loginTaskSummary(String login, String password){
+//        getUserNameField().shouldBe(Condition.visible).sendKeys(login);
+//        getPasswordField().shouldBe(Condition.visible).sendKeys(password);
+//        getSignInBtn().shouldBe(Condition.visible).click();
+//        return new TaskSummaryPage();
+//    }
 }

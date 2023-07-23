@@ -2,19 +2,18 @@ package UI.tests.project;
 
 import API.POJO.steps.ProjectApiSteps;
 import API.POJO.steps.UserApiSteps;
-import UI.pageobjects.LoginPage;
 import UI.pageobjects.dashboard.DashboardOverviewPage;
 import UI.pageobjects.header.HeaderSection;
-import UI.pageobjects.projectmanagement.ProjectSummaryPage;
 import UI.tests.BaseTest;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.DBReader;
 
 import static com.codeborne.selenide.Condition.*;
-import static utils.EnvProperties.BASE_URL;
 import static utils.Randomizer.getRandomInt;
 import static API.POJO.enums.UserRoles.ADMIN;
 
@@ -41,15 +40,12 @@ public class CreateNewProjectTests extends BaseTest {
     public void addNewProjectFromHeaderTest() {
         SelenideElement newProjectTitle = new DashboardOverviewPage()
                 .openUserDashboardPage()
-                .loginByUser(username, PASSWORD)
+                .loginGeneric(HeaderSection.class, username, PASSWORD)
                 .addNewProjectHeader()
                 .createNewProject(projectName)
                 .getTitle().shouldBe(visible);
         newProjectTitle.shouldHave(exactText(projectName));
-
-        // +++ ADD checking in DB +++
-
-
+        Assert.assertNotNull(DBReader.getProjectIdFromDBByName(projectName), "Project is not created");
     }
 
     @AfterMethod(alwaysRun = true)

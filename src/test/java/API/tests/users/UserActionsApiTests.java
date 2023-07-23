@@ -23,7 +23,6 @@ public class UserActionsApiTests {
     @Step("Setup test data")
     public void prepareDataForTest() {
         userId = userApiSteps.createUser(USERNAME+getRandomInt(),PASSWORD);
-        System.out.println(userId);
     }
 
     @Test

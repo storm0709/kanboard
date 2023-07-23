@@ -23,7 +23,6 @@ public class ProjectPermissionsTests {
     public void prepareDataForTest() {
         userId = userApiSteps.createUser(USERNAME+getRandomInt(),PASSWORD);
         projectId = projectApiSteps.createProjectRequiredParam(PROJECTNAME+getRandomInt());
-        System.out.println("Iser id is "+userId+" Project is is "+projectId);
     }
 
     @Test

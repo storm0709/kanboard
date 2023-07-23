@@ -34,7 +34,6 @@ public class TaskActionsApiTests {
         taskProperties = taskApiSteps.getTaskProperties(Integer.valueOf(taskId));
         taskProperties.getResult().getTitle().contains(TASK_TITLE);
         Assert.assertNotNull(taskProperties.getResult().getUrl(), "URL is null");
-        System.out.println(taskProperties.getResult().getUrl());
     }
 
     @Test
@@ -42,7 +41,6 @@ public class TaskActionsApiTests {
     public void getTaskPropertiesApiNegativeTest(){
         taskProperties = taskApiSteps.getTaskProperties(Integer.valueOf(taskId+taskId));
         Assert.assertNull(taskProperties.getResult(), "Task properties are returned");
-        System.out.println(taskProperties.getResult());
     }
 
     @AfterMethod(alwaysRun = true)

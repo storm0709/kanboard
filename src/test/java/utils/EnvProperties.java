@@ -1,5 +1,7 @@
 package utils;
 
+import lombok.SneakyThrows;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -13,6 +15,9 @@ public class EnvProperties {
     public static final String BASE_URL = propertyValue(PATH_TO_RESOURCE, PROPERTIES_FILE_NAME, "baseUrl");
     public static final String API_USERNAME = propertyValue(PATH_TO_RESOURCE, PROPERTIES_FILE_NAME, "username");
     public static final String API_TOKEN = propertyValue(PATH_TO_RESOURCE, PROPERTIES_FILE_NAME, "token");
+    public static final String DB_URL = propertyValue(PATH_TO_RESOURCE, PROPERTIES_FILE_NAME, "db_url");
+    public static final String DB_USER_NAME = propertyValue(PATH_TO_RESOURCE, PROPERTIES_FILE_NAME, "db_login");
+    public static final String DB_USER_PASSWORD = propertyValue(PATH_TO_RESOURCE, PROPERTIES_FILE_NAME, "db_password");
 
 
     public static String propertyValue(String pathToFile, String propertyFileName, String propertyName) {

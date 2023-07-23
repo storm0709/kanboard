@@ -3,14 +3,17 @@ package UI.tests.task;
 import API.POJO.steps.ProjectApiSteps;
 import API.POJO.steps.TaskApiSteps;
 import API.POJO.steps.UserApiSteps;
+import DB.models.Tasks;
 import UI.pageobjects.tasks.TaskSummaryPage;
 import UI.tests.BaseTest;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.DBReader;
 
 import static API.POJO.enums.UserRoles.ADMIN;
 import static utils.Randomizer.getRandomInt;
@@ -23,9 +26,11 @@ public class TaskTests extends BaseTest {
     private Boolean isRoleUpdated;
     private String projectId;
     private String projectName = "AutoTest";
-    private String taskName = "Task"+getRandomInt();
+    private String taskName = "Task";
     private String commentText = "This is the comment "+getRandomInt();
     private String taskId;
+    private Tasks taskInfoDB;
+    private String commentId;
     UserApiSteps userApiSteps = new UserApiSteps();
     ProjectApiSteps projectApiSteps = new ProjectApiSteps();
     TaskApiSteps taskApiSteps = new TaskApiSteps();
@@ -45,13 +50,11 @@ public class TaskTests extends BaseTest {
     public void removeTaskTest(){
         SelenideElement addedTask = new TaskSummaryPage()
                 .openTaskSummaryPage(Integer.valueOf(taskId))
-                .loginTaskSummary(username, PASSWORD)
+                .loginGeneric(TaskSummaryPage.class, username, PASSWORD)
                 .clickRemoveItem()
                 .taskId(taskId);
         addedTask.should(Condition.disappear);
-
-//         +++ ADD checking in DB +++
-
+        Assert.assertNull(taskInfoDB=DBReader.getTaskFromDBById(taskId),"Task is not removed");
     }
 
 
@@ -60,7 +63,7 @@ public class TaskTests extends BaseTest {
     public void closeTaskTest(){
         SelenideElement taskStatus = new TaskSummaryPage()
                 .openTaskSummaryPage(Integer.valueOf(taskId))
-                .loginTaskSummary(username, PASSWORD)
+                .loginGeneric(TaskSummaryPage.class, username, PASSWORD)
                 .clickCloseThisTask()
                 .taskStatusClosed().shouldBe(Condition.visible);
         taskStatus.shouldHave(Condition.text("close"));
@@ -71,15 +74,12 @@ public class TaskTests extends BaseTest {
     public void addFirstCommentTest(){
         SelenideElement comment = new TaskSummaryPage()
                 .openTaskSummaryPage(Integer.valueOf(taskId))
-                .loginTaskSummary(username, PASSWORD)
+                .loginGeneric(TaskSummaryPage.class, username, PASSWORD)
                 .clickAddCommentItem()
                 .createFirstComment(commentText)
                 .commentText(commentText).shouldBe(Condition.visible);
         comment.shouldHave(Condition.exactText(commentText));
-
-
-//         +++ ADD checking in DB +++
-
+        Assert.assertNotNull(commentId = DBReader.getCommentIdFromDBByUserTaskComment(taskId,userId,commentText), "Comment is not created");
     }
 
 

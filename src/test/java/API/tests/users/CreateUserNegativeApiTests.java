@@ -17,6 +17,5 @@ public class CreateUserNegativeApiTests {
     public void createUserApiTestNeg(String username, String password){
         userIdResult = userApiSteps.createUser(username,password);
         Assert.assertFalse(Boolean.parseBoolean(userIdResult), "User is created");
-        System.out.println(userIdResult);
     }
 }

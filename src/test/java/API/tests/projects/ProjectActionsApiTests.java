@@ -21,7 +21,6 @@ public class ProjectActionsApiTests {
     @Step("Setup test data")
     public void prepareDataForTest() {
         projectId = projectApiSteps.createProjectRequiredParam(PROJECTNAME+getRandomInt());
-        System.out.println(projectId);
     }
 
     @Test
