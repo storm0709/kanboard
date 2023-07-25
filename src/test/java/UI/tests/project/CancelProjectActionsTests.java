@@ -60,7 +60,7 @@ public class CancelProjectActionsTests extends BaseTest {
                 .removeProjectCancel()
                 .getTitle().shouldBe(visible);
         newProjectTitle.shouldHave(text(projectName));
-//        Assert.assertNotNull(DBReader.getProjectIdFromDBByName(projectName), "Project is removed");
+        Assert.assertNotNull(DBReader.getProjectIdFromDBByName(projectName), "Project is removed");
     }
 
     @AfterMethod(alwaysRun = true)

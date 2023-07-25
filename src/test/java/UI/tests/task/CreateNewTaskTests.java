@@ -49,13 +49,13 @@ public class CreateNewTaskTests extends BaseTest {
                 .createNewTaskFromDropdown(taskName)
                 .addedTask(taskName).shouldBe(Condition.visible);
         addedTask.shouldHave(Condition.exactText(taskName));
-//        Assert.assertNotNull(taskId = DBReader.getTaskIdFromDBByTitle(taskName), "Task is not created");
+        Assert.assertNotNull(taskId = DBReader.getTaskIdFromDBByTitle(taskName), "Task is not created");
     }
 
     @AfterMethod(alwaysRun = true)
     @Step("Cleanup test data")
     public void removeDataAfterTest(){
-//        taskApiSteps.removeTask(Integer.valueOf(taskId));
+        taskApiSteps.removeTask(Integer.valueOf(taskId));
         projectApiSteps.removeProject(projectId);
         userApiSteps.removeUser(userId);
     }

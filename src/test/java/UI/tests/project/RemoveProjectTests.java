@@ -48,7 +48,7 @@ public class RemoveProjectTests extends BaseTest {
                   .removeProject()
                   .getTitle().shouldBe(visible);
           newProjectTitle.shouldHave(text("Projects"));
-//          Assert.assertNull(projectInfo = DBReader.getProjectFromDBByName(projectName), "Project is not removed");
+          Assert.assertNull(projectInfo = DBReader.getProjectFromDBByName(projectName), "Project is not removed");
      }
 
 

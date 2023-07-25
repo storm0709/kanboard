@@ -45,7 +45,7 @@ public class CreateNewProjectTests extends BaseTest {
                 .createNewProject(projectName)
                 .getTitle().shouldBe(visible);
         newProjectTitle.shouldHave(exactText(projectName));
-//        Assert.assertNotNull(DBReader.getProjectIdFromDBByName(projectName), "Project is not created");
+        Assert.assertNotNull(DBReader.getProjectIdFromDBByName(projectName), "Project is not created");
     }
 
     @AfterMethod(alwaysRun = true)
